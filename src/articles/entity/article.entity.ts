@@ -5,9 +5,15 @@ export class Article {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
+  @Column({ default: '', length: 500 })
   title: string;
 
-  @Column('text')
+  @Column({ default: '' })
   content: string;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created: Date;
+
+  @Column({ default: '' })
+  author: string;
 }

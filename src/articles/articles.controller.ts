@@ -23,12 +23,12 @@ export class ArticlesController {
 
   @Get()
   async findAll(): Promise<Article[]> {
-    return this.articlesService.findAll();
+    return await this.articlesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param() params): string {
-    return `This action returns a #${params.id} article`;
+  async findOne(@Param('id') id) {
+    return await this.articlesService.findOne({ id });
   }
 
   @Put(':id')

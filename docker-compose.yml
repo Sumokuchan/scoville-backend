@@ -1,0 +1,16 @@
+version: '0.0'
+services:
+  api-backend:
+    image: node:10
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: npm run start:prod
+  database:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./data:/data/db

@@ -7,5 +7,5 @@ Here's what was done so far, using NestJS and Mongoose:
 - WIP: edit and delete an article
 
 To run the project simply do after cloning it:
-- npm install
-- npm run start
+- `npm install`
+- `npm run start`

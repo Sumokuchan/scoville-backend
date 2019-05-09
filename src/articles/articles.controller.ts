@@ -26,14 +26,14 @@ export class ArticlesController {
     return await this.articlesService.findAll();
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id) {
-    return await this.articlesService.findOne({ id });
+  @Get(':_id')
+  async findOne(@Param('_id') _id) {
+    return await this.articlesService.findOne({ _id });
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateArticleDto: UpdateArticleDto) {
-    return `This action updates a #${id} article`;
+  @Put(':_id')
+  async update(@Param('_id') _id, @Body() articleData: CreateArticleDto) {
+    return await this.articlesService.update(_id, articleData);
   }
 
   @Delete(':id')

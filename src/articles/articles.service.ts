@@ -23,4 +23,12 @@ export class ArticlesService {
     const article = await this.articleModel.findOne(where);
     return article;
   }
+
+  async update(_id: string, articleData: any): Promise<Article> {
+    let toUpdate = await this.articleModel.findOne({ _id});
+    let updated = Object.assign(toUpdate, articleData);
+    return await this.articleModel(updated).save();
+    // const article: any = await this.articleModel.save(updated);
+    // return {article};
+  }
 }

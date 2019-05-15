@@ -8,7 +8,7 @@ import { CreateArticleDto } from './dto/create-article.dto';
 export class ArticlesService {
   constructor(
     @InjectModel('Article') private readonly articleModel: Model<Article>,
-  ) {}
+  ) { }
 
   async create(createArticleDto: CreateArticleDto): Promise<Article> {
     const createdArticle = new this.articleModel(createArticleDto);
@@ -24,11 +24,14 @@ export class ArticlesService {
     return article;
   }
 
-  async update(_id: string, articleData: any): Promise<Article> {
-    let toUpdate = await this.articleModel.findOne({ _id});
-    let updated = Object.assign(toUpdate, articleData);
-    return await this.articleModel(updated).save();
-    // const article: any = await this.articleModel.save(updated);
-    // return {article};
+  async update(_id: string, createArticleDto: CreateArticleDto): Promise<Article> {
+    const editedArticle = await this.articleModel
+      .findByIdAndUpdate(_id, createArticleDto, { new: true });
+    return editedArticle;
+  }
+
+  async delete(_id: string): Promise<Article> {
+    const deletedArticle = await this.articleModel.findByIdAndDelete(_id);
+    return deletedArticle;
   }
 }

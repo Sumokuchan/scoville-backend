@@ -14,7 +14,7 @@ import { Article } from './interfaces/article.interface';
 
 @Controller('articles')
 export class ArticlesController {
-  constructor(private readonly articlesService: ArticlesService) {}
+  constructor(private readonly articlesService: ArticlesService) { }
 
   @Post()
   async create(@Body() createArticleDto: CreateArticleDto) {
@@ -36,8 +36,8 @@ export class ArticlesController {
     return await this.articlesService.update(_id, articleData);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return `This action removes a #${id} article`;
+  @Delete(':_id')
+  async delete(@Param('_id') _id) {
+    return await this.articlesService.delete(_id);
   }
 }
